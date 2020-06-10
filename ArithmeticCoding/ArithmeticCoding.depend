@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1591819749 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"File.h"
+	"coder.h"
+
+1591817371 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\linkedlist.h
+
+1591819206 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\linkedlist.c
+	"LinkedList.h"
+	<stdlib.h>
+
+1591795042 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1591819700 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"coder.h"
+
+1591794076 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.h
+	<stdbool.h>
+
+1590790664 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
+1591819576 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
+
