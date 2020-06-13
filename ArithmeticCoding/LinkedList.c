@@ -127,6 +127,10 @@ LinkedList insertAfterLinkedList(LinkedList ll, char key, void* content)
 
 		return ll;
 	}
+	else{
+        LinkedList new = newNodeLinkedList(key, content);
+        return new;
+	}
 
 	return ERROR;
 }

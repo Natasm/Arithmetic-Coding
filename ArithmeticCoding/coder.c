@@ -1,11 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
 #include "LinkedList.h"
 #include "coder.h"
+#include "File.h"
 
 #define _num_state_bits 31
 
-int update(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
+int sum = 0;
+
+void shift(Configuration* config) {
+    bool bit = config->_low >> (_num_state_bits);
+
+    writeBit(bit);
+
+    // Write out the saved underflow bits
+    for (int i = 0; i < config->_num_underflow; i++) writeBit(bit ^ 1);
+
+    config->_num_underflow = 0;
+}
+
+int write(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
     unsigned long int low = config->_low;
     unsigned long int high = config->_high;
 
@@ -15,11 +31,37 @@ int update(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
 
     if (!(config->_minimum_range >> 0 <= range >> 0 && range >> 0 <= config->_full_range >> 0)) return -1;
 
+    LimitsConfig lc = getLimitsConfigLinkedList(searchLinkedList(ll, symbol));
+    double symbolLow = getLowLimitsConfig(lc);
+    double symbolHigh = getHighLimitsConfig(lc);
 
-    //double symbolLow =
+    if(config->_maximum_total >> 0 <= sizeBuffer >> 0) return -1;
+
+    unsigned long int newLow = low + floor(range * symbolLow);
+    unsigned long int newHigh = low + floor(range * symbolHigh) - 1;
+
+    config->_low = newLow;
+    config->_high = newHigh;
+
+    //printf("%c - %lu\n", symbol, low);
+
+     while(((config->_low >> 0 ^ config->_high) & (config->_half_range)) == 0){
+        shift(config);
+        sum = sum + 1;
+        config->_low = (config->_low << 1) & (config->_state_mask);
+        config->_high = ((config->_high << 1) & config->_state_mask) | 1;
+    }
+
+    while((config->_low & (~ config->_high) & (config->_quarter_range)) != 0){
+        config->_num_underflow = config->_num_underflow + 1;
+        config->_low = (config->_low << 1) ^ (config->_half_range);
+        config->_high = ((config->_high ^ (config->_half_range)) << 1) | config->_half_range | 1;
+    }
+    //printf("%d\n", sum);
+    return 1;
 }
 
-Configuration getConfig(){
+Configuration getConfig(char* outputPathFile){
    Configuration config;
 
    //Size max of unsigned long int (_full_range)
@@ -35,8 +77,9 @@ Configuration getConfig(){
    config._low = 0;
    config._high = config._state_mask;
 
+   config._num_underflow = 0;
+
+   config.output = outputPathFile;
+
    return config;
 }
-
-
-

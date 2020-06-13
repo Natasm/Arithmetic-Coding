@@ -14,7 +14,7 @@ void clearBuffer(){
    if(n == 0) return;
 
    if(n > 0) buffer <<= (8 - n);
-   fwrite(&buffer,sizeof(int),1,pont_arq);
+   fwrite(&buffer, sizeof(char),1,pont_arq);
 
    buffer = 0;
    n = 0;

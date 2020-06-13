@@ -1,14 +1,16 @@
 # depslib dependency file v1.0
-1591819749 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
+1591919095 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"File.h"
 	"coder.h"
+	"PriorityQueue.h"
+	"Node.h"
 
 1591817371 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\linkedlist.h
 
-1591819206 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\linkedlist.c
+1591889675 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\linkedlist.c
 	"LinkedList.h"
 	<stdlib.h>
 
@@ -16,19 +18,34 @@
 	<stdio.h>
 	<stdlib.h>
 
-1591819700 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
+1591915875 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
 	<stdio.h>
 	<stdlib.h>
+	<math.h>
+	<stdbool.h>
 	"LinkedList.h"
 	"coder.h"
+	"File.h"
 
 1591794076 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.h
 	<stdbool.h>
 
-1590790664 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.c
+1591883754 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 
-1591819576 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
+1591912314 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
+
+1590768856 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\priorityqueue.h
+
+1591889014 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\node.h
+
+1590785330 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\priorityqueue.c
+	"PriorityQueue.h"
+	<stdlib.h>
+
+1591889060 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\node.c
+	<stdlib.h>
+	"Node.h"
 
