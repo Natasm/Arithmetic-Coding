@@ -22,6 +22,6 @@ typedef struct configuration{
 
 Configuration getConfig();
 
-int write(LinkedList ll, char symbol, int sizeBuffer, Configuration* config);
+int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config);
 
 #endif // CODER_H_INCLUDED

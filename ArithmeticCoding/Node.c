@@ -21,7 +21,7 @@ int getContentNode(Node n){
     return n->frequence;
 }
 
-
-
-
-
+Node addContentNode(Node n, int add){
+    n->frequence = n->frequence + 1;
+    return n;
+}

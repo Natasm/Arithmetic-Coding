@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-#include "LinkedList.h"
+#include "LimitsConfig.h"
 #include "coder.h"
 #include "File.h"
 
 #define _num_state_bits 31
-
-int sum = 0;
 
 void shift(Configuration* config) {
     bool bit = config->_low >> (_num_state_bits);
@@ -21,7 +19,7 @@ void shift(Configuration* config) {
     config->_num_underflow = 0;
 }
 
-int write(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
+int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config){
     unsigned long int low = config->_low;
     unsigned long int high = config->_high;
 
@@ -31,9 +29,8 @@ int write(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
 
     if (!(config->_minimum_range >> 0 <= range >> 0 && range >> 0 <= config->_full_range >> 0)) return -1;
 
-    LimitsConfig lc = getLimitsConfigLinkedList(searchLinkedList(ll, symbol));
-    double symbolLow = getLowLimitsConfig(lc);
-    double symbolHigh = getHighLimitsConfig(lc);
+    double symbolLow = getLowLimitsConfig(lc[symbol]);
+    double symbolHigh = getHighLimitsConfig(lc[symbol]);
 
     if(config->_maximum_total >> 0 <= sizeBuffer >> 0) return -1;
 
@@ -43,11 +40,8 @@ int write(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
     config->_low = newLow;
     config->_high = newHigh;
 
-    //printf("%c - %lu\n", symbol, low);
-
-     while(((config->_low >> 0 ^ config->_high) & (config->_half_range)) == 0){
+     while(((config->_low ^ config->_high) & (config->_half_range)) == 0){
         shift(config);
-        sum = sum + 1;
         config->_low = (config->_low << 1) & (config->_state_mask);
         config->_high = ((config->_high << 1) & config->_state_mask) | 1;
     }
@@ -57,7 +51,6 @@ int write(LinkedList ll, char symbol, int sizeBuffer, Configuration* config){
         config->_low = (config->_low << 1) ^ (config->_half_range);
         config->_high = ((config->_high ^ (config->_half_range)) << 1) | config->_half_range | 1;
     }
-    //printf("%d\n", sum);
     return 1;
 }
 

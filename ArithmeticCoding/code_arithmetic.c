@@ -1,90 +1,76 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "LinkedList.h"
+#include "LimitsConfig.h"
 #include "File.h"
 #include "coder.h"
-#include "PriorityQueue.h"
 #include "Node.h"
 
-LinkedList count_freq(char* buffer, int size_buffer, LinkedList ll){
-    for(int i = 0; i < size_buffer; i++) ll = updateLinkedList(ll, buffer[i], 1);
-    return ll;
+#define SIZE_ALPHABETIC 256
+
+Node nodes[256];
+int sizeNodeValid = 0;
+
+LimitsConfig limits_config[256];
+
+void count_freq(FILE* input){
+    int ch = getc(input);
+
+    while(ch != EOF){
+        if(nodes[ch] == NULL) nodes[ch] = newNode(ch, 1);
+        else nodes[ch] = addContentNode(nodes[ch], 1);
+
+        ch = getc(input);
+    }
 }
 
-LinkedList freq_prob(LinkedList ll_freq_prob, LinkedList ll, int sizeBuffer){
-    LinkedList ll_buffer = ll;
+void freq_prob(int sizeNode, int sizeBuffer){
     long double acc = 0;
 
-    while(ll_buffer != NULL){
-        int content = getContentLinkedList(ll_buffer);
-        LimitsConfig lc = newLimitsConfig(acc, acc + content / (double) sizeBuffer);
-        ll_freq_prob = insertLimitsConfigBeginningLinkedList(ll_freq_prob, getKeyLinkedList(ll_buffer), lc);
+    for(int i = 0; i < sizeNode; i++){
+        if(nodes[i] == NULL) continue;
+
+        int content = getContentNode(nodes[i]);
+        if(limits_config[i] == NULL) limits_config[i] = newLimitsConfig(acc, acc + content / (double) sizeBuffer);
 
         acc = acc + content / (double) sizeBuffer;
-        ll_buffer = getNextNodeLinkedList(ll_buffer);
+        sizeNodeValid++;
     }
-
-    return ll_freq_prob;
-}
-
-LinkedList sortLinkedList(LinkedList ll){
-
-    PriorityQueue pq = newPriorityQueue(sizeLinkedList(ll));
-    while(ll != NULL){
-        Node node = newNode(getKeyLinkedList(ll), getContentLinkedList(ll));
-        insertPriorityQueue(pq, getContentLinkedList(ll), node);
-        ll = getNextNodeLinkedList(ll);
-    }
-
-    LinkedList sortedList = newLinkedList();
-    while(!isEmptyPriorityQueue(pq)){
-        Node node = removeMinPriorityQueue(pq);
-        sortedList = insertAfterLinkedList(sortedList, getKeyNode(node), getContentNode(node));
-    }
-    return sortedList;
 }
 
 void compress(char* inputPathFile, char* outputPathFile){
-    FILE* file = fopen(inputPathFile, "rt");
-    fseek(file, 0L, SEEK_END);
-    int sizeBuffer = ftell(file);
-    char buffer[sizeBuffer];
-    rewind(file);
+    FILE* file_input = fopen(inputPathFile, "rt");
+    fseek(file_input, 0L, SEEK_END);
+    int sizeBuffer = ftell(file_input);
 
-    fread(&buffer, sizeof(char), sizeBuffer, file);
+    rewind(file_input);
 
-    fclose(file);
-
-    LinkedList ll = newLinkedList();
-    ll = count_freq(buffer, strlen(buffer), ll);
-    //ll = sortLinkedList(ll);
-
-    LinkedList ll_freq_prof = newLinkedList();
-    ll_freq_prof = freq_prob(ll_freq_prof, ll, strlen(buffer));
-
-    toString(ll_freq_prof);
+    count_freq(file_input);
+    freq_prob(SIZE_ALPHABETIC, sizeBuffer);
 
     Configuration config = getConfig(outputPathFile);
 
     create_or_open_file(config.output);
 
-    writeByte(sizeLinkedList(ll_freq_prof));
-    LinkedList ll_buffer = ll;
-    while(ll_buffer != NULL){
-        writeChar(getKeyLinkedList(ll_buffer));
-        writeByte(getContentLinkedList(ll_buffer));
-        ll_buffer = getNextNodeLinkedList(ll_buffer);
+    writeByte(sizeNodeValid);
+    for(int i = 0; i < SIZE_ALPHABETIC; i++){
+        if(nodes[i] != NULL){
+           writeChar(getKeyNode(nodes[i]));
+           writeByte(getContentNode(nodes[i]));
+        }
     }
 
-    for(int i = 0; i < sizeBuffer; i++){
-        write(ll_freq_prof, buffer[i], strlen(buffer), &config);
+    rewind(file_input);
+
+    int ch = getc(file_input);
+    while(ch != EOF){
+        write(&limits_config, ch, sizeBuffer, &config);
+        ch = getc(file_input);
     }
 
     close_file();
+    fclose(file_input);
 }
 
-
 void main(){
-
-   compress("text_arithmetic.txt", "test_arithmetic.dat");
+   compress("The_Bible.txt", "test_arithmetic.dat");
 }
