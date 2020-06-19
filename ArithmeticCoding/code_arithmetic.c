@@ -51,13 +51,15 @@ void compress(char* inputPathFile, char* outputPathFile){
 
     create_or_open_file(config.output);
 
-    writeByte(sizeNodeValid);
+    writeInt(sizeNodeValid);
     for(int i = 0; i < SIZE_ALPHABETIC; i++){
         if(nodes[i] != NULL){
            writeChar(getKeyNode(nodes[i]));
-           writeByte(getContentNode(nodes[i]));
+           writeInt(getContentNode(nodes[i]));
         }
     }
+
+    writeInt(sizeBuffer);
 
     rewind(file_input);
 

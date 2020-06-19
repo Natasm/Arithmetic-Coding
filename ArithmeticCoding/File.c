@@ -7,7 +7,7 @@ static int buffer = 0;
 static int n = 0;
 
 void create_or_open_file(char* path){
-    pont_arq = fopen(path, "a");
+    pont_arq = fopen(path, "ab");
 }
 
 void clearBuffer(){
@@ -30,7 +30,7 @@ void writeBit(bool bit){
 
 void writeByte(int x){
      if(n == 0){
-        fwrite(&buffer,sizeof(int),1,pont_arq);
+        fwrite(&x,sizeof(char),1,pont_arq);
         return;
      }
      for(int i = 0; i < 8; i++){
@@ -39,10 +39,18 @@ void writeByte(int x){
      }
 }
 
+void writeInt(int x){
+    writeByte((x >> 24) & 0xff);
+    writeByte((x >> 16) & 0xff);
+    writeByte((x >> 8) & 0xff);
+    writeByte((x >> 0) & 0xff);
+}
+
 void writeChar(char c){
     writeByte(c);
 }
 
 void close_file(){
+    clearBuffer();
     if(pont_arq != NULL) fclose(pont_arq);
 }

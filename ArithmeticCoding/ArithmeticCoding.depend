@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1592329933 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
+1592583821 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
 	<stdio.h>
 	<stdlib.h>
 	"LimitsConfig.h"
@@ -13,11 +13,11 @@
 	"LinkedList.h"
 	<stdlib.h>
 
-1591795042 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\main.c
+1592582272 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\main.c
 	<stdio.h>
 	<stdlib.h>
 
-1592329921 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
+1592582272 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
@@ -26,31 +26,31 @@
 	"coder.h"
 	"File.h"
 
-1591794076 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.h
+1592583786 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.h
 	<stdbool.h>
 
-1592082597 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.c
+1592582272 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\file.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>
 
-1592328258 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
+1592582272 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
 
 1590768856 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\priorityqueue.h
 
-1592327223 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\node.h
+1592582272 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\node.h
 
 1590785330 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\priorityqueue.c
 	"PriorityQueue.h"
 	<stdlib.h>
 
-1592327205 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\node.c
+1592582272 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\node.c
 	<stdlib.h>
 	"Node.h"
 
-1592329880 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\limitsconfig.h
+1592582272 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\limitsconfig.h
 
-1592329942 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\limitsconfig.c
+1592582272 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\limitsconfig.c
 	"LimitsConfig.h"
 	<stdlib.h>
 
