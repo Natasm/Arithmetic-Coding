@@ -43,7 +43,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Node.h" />
-		<Unit filename="PriorityQueue.h" />
 		<Unit filename="code_arithmetic.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -51,6 +50,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="coder.h" />
+		<Unit filename="decode_arithmetic.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

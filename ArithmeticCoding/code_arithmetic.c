@@ -47,19 +47,17 @@ void compress(char* inputPathFile, char* outputPathFile){
     count_freq(file_input);
     freq_prob(SIZE_ALPHABETIC, sizeBuffer);
 
-    Configuration config = getConfig(outputPathFile);
+    Configuration config = getConfig(outputPathFile, "wb");
 
-    create_or_open_file(config.output);
-
-    writeInt(sizeNodeValid);
+    writeInt(config.fs, sizeNodeValid);
     for(int i = 0; i < SIZE_ALPHABETIC; i++){
         if(nodes[i] != NULL){
-           writeChar(getKeyNode(nodes[i]));
-           writeInt(getContentNode(nodes[i]));
+           writeChar(config.fs, getKeyNode(nodes[i]));
+           writeInt(config.fs,  getContentNode(nodes[i]));
         }
     }
 
-    writeInt(sizeBuffer);
+    writeInt(config.fs, sizeBuffer);
 
     rewind(file_input);
 
@@ -69,7 +67,7 @@ void compress(char* inputPathFile, char* outputPathFile){
         ch = getc(file_input);
     }
 
-    close_file();
+    close_file(config.fs, "wb");
     fclose(file_input);
 }
 

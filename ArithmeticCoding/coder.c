@@ -11,10 +11,10 @@
 void shift(Configuration* config) {
     bool bit = config->_low >> (_num_state_bits);
 
-    writeBit(bit);
+    writeBit(config->fs, bit);
 
     // Write out the saved underflow bits
-    for (int i = 0; i < config->_num_underflow; i++) writeBit(bit ^ 1);
+    for (int i = 0; i < config->_num_underflow; i++) writeBit(config->fs, bit ^ 1);
 
     config->_num_underflow = 0;
 }
@@ -54,7 +54,7 @@ int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config){
     return 1;
 }
 
-Configuration getConfig(char* outputPathFile){
+Configuration getConfig(char* inputOrOutputPath, char* mode){
    Configuration config;
 
    //Size max of unsigned long int (_full_range)
@@ -72,7 +72,7 @@ Configuration getConfig(char* outputPathFile){
 
    config._num_underflow = 0;
 
-   config.output = outputPathFile;
+   config.fs = create_or_open_file(inputOrOutputPath, mode);
 
    return config;
 }

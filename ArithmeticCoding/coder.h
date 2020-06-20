@@ -1,5 +1,6 @@
 #ifndef CODER_H_INCLUDED
 #define CODER_H_INCLUDED
+#include "File.h"
 
 typedef struct configuration{
    unsigned long int _full_range;
@@ -16,11 +17,11 @@ typedef struct configuration{
 
    unsigned long int _num_underflow;
 
-   char* output;
+   FileStream fs;
 
 } Configuration;
 
-Configuration getConfig();
+Configuration getConfig(char* inputOrOutputPath, char* mode);
 
 int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config);
 
