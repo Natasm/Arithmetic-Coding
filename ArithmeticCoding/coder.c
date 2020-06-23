@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-#include "LimitsConfig.h"
+#include "ArithmeticConfig.h"
 #include "coder.h"
 #include "File.h"
 
@@ -19,7 +19,7 @@ void shift(Configuration* config) {
     config->_num_underflow = 0;
 }
 
-int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config){
+int write(ArithmeticConfig ac, char symbol, int sizeBuffer, Configuration* config){
     unsigned long int low = config->_low;
     unsigned long int high = config->_high;
 
@@ -29,8 +29,8 @@ int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config){
 
     if (!(config->_minimum_range >> 0 <= range >> 0 && range >> 0 <= config->_full_range >> 0)) return -1;
 
-    double symbolLow = getLowLimitsConfig(lc[symbol]);
-    double symbolHigh = getHighLimitsConfig(lc[symbol]);
+    double symbolLow = getLowLimitsConfig(getLimitsConfig(ac, symbol));
+    double symbolHigh = getHighLimitsConfig(getLimitsConfig(ac, symbol));
 
     if(config->_maximum_total >> 0 <= sizeBuffer >> 0) return -1;
 

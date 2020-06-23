@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ArithmeticConfig.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ArithmeticConfig.h" />
 		<Unit filename="File.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -46,6 +50,7 @@
 		<Unit filename="code_arithmetic.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="code_arithmetic.h" />
 		<Unit filename="coder.c">
 			<Option compilerVar="CC" />
 		</Unit>

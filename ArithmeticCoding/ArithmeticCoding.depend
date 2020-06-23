@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1592662413 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
+1592941591 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\code_arithmetic.c
 	<stdio.h>
 	<stdlib.h>
 	"LimitsConfig.h"
@@ -17,12 +17,12 @@
 	<stdio.h>
 	<stdlib.h>
 
-1592602797 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
+1592941504 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.c
 	<stdio.h>
 	<stdlib.h>
 	<math.h>
 	<stdbool.h>
-	"LimitsConfig.h"
+	"ArithmeticConfig.h"
 	"coder.h"
 	"File.h"
 
@@ -36,8 +36,9 @@
 	<string.h>
 	"File.h"
 
-1592602927 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
+1592941465 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\coder.h
 	"File.h"
+	"ArithmeticConfig.h"
 
 1590768856 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\priorityqueue.h
 
@@ -64,4 +65,14 @@
 	"Node.h"
 	"LimitsConfig.h"
 	"coder.h"
+
+1592941567 c:\users\natandemorais\arithmetic-coding\arithmeticcoding\arithmeticconfig.h
+	"Node.h"
+	"LimitsConfig.h"
+
+1592941313 source:c:\users\natandemorais\arithmetic-coding\arithmeticcoding\arithmeticconfig.c
+	<stdlib.h>
+	"ArithmeticConfig.h"
+	"Node.h"
+	"LimitsConfig.h"
 

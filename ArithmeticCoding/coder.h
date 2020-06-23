@@ -1,6 +1,7 @@
 #ifndef CODER_H_INCLUDED
 #define CODER_H_INCLUDED
 #include "File.h"
+#include "ArithmeticConfig.h"
 
 typedef struct configuration{
    unsigned long int _full_range;
@@ -23,6 +24,6 @@ typedef struct configuration{
 
 Configuration getConfig(char* inputOrOutputPath, char* mode);
 
-int write(LimitsConfig* lc, char symbol, int sizeBuffer, Configuration* config);
+int write(ArithmeticConfig ac, char symbol, int sizeBuffer, Configuration* config);
 
 #endif // CODER_H_INCLUDED
