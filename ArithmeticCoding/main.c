@@ -6,8 +6,6 @@
 #include "code_arithmetic.h"
 
 int main(){
-    //compress("C:/Users/natandemorais/Desktop/files/Dictionary.txt", "C:/Users/natandemorais/Desktop/files/Dictionary.dat");
-
     clock_t t;
     DIR *dir;
     struct dirent *ent;
